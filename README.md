@@ -22,7 +22,18 @@ Instagram und YouTube sperren automatisierte Massen-Uploads gerne.
 - Das Tool muss laufen, während die Streamer live sind. Lass es also auf deinem
   PC oder einem kleinen Server laufen.
 
-## Installation (einmalig)
+## Schnellstart unter Windows
+
+1. Auf <https://github.com/fox3nox89/clipper> auf **Code → Download ZIP** klicken und entpacken
+   (z. B. nach `C:\Users\<Name>\clipper`).
+2. **`setup.bat` doppelklicken.** Python und ffmpeg werden bei Bedarf installiert. Falls es dich
+   dazu auffordert, `setup.bat` danach noch einmal doppelklicken.
+3. In der Datei `config.yaml`, die sich öffnet, bei deinen Kampagnen-Streamern `enabled: true` setzen und speichern.
+4. **`start.bat` doppelklicken.** Fertig. Die Clips landen im Ordner `clips`.
+
+`start.bat` startet das Tool nach einem Absturz automatisch neu.
+
+## Installation von Hand (einmalig)
 
 1. **Python 3.10+** installieren: <https://www.python.org/downloads/>
    (Windows: beim Installieren „Add Python to PATH“ anhaken)
