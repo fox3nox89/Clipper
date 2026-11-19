@@ -1,0 +1,42 @@
+# Kopiere diese Datei nach config.yaml und passe sie an.
+# Trage NUR Streamer ein, für die du an einer offiziellen Clipping-Kampagne teilnimmst
+# (z. B. auf contentrewards.com) – sonst verletzt du Urheberrechte und wirst nicht bezahlt.
+
+streamers:
+  - name: lacy
+    platform: twitch
+    channel: lacy
+    # Facecam-Bereich als Anteil vom Bild [x, y, breite, hoehe].
+    # Mit "python -m clipper snapshot https://www.twitch.tv/lacy" ablesen.
+    # Weglassen = unscharfer Hintergrund statt Facecam oben.
+    facecam: [0.0, 0.0, 0.25, 0.33]   # Beispielwerte! Selbst ablesen.
+
+  - name: clix
+    platform: twitch
+    channel: clix
+    facecam: [0.0, 0.62, 0.22, 0.38]  # Beispielwerte! Selbst ablesen.
+
+  - name: dom
+    platform: kick
+    channel: dom
+    # kick_chatroom_id: 123456   # nur nötig, falls die automatische Suche scheitert
+
+detection:
+  window_seconds: 10      # "Hype"-Zeitfenster
+  multiplier: 3.0         # wie viel mehr Chat als normal ein Highlight ist
+  min_messages: 25        # Mindestanzahl Nachrichten im Fenster (für kleine Streams senken)
+  cooldown_seconds: 90    # Mindestabstand zwischen zwei Clips
+
+clip:
+  before_seconds: 30      # Sekunden vor dem Hype-Moment
+  after_seconds: 10       # Sekunden danach
+  facecam_height: 640     # Höhe der Facecam oben (von 1920)
+  subtitles: true
+  whisper_model: small    # tiny = schnell, medium = genauer
+  language: null          # null = automatisch, sonst z. B. "en" oder "de"
+
+output_dir: clips
+buffer_dir: buffer
+buffer_minutes: 5
+check_interval_seconds: 60
+quality: best             # oder z. B. "720p60", spart CPU

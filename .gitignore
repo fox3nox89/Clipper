@@ -1,0 +1,7 @@
+clips/
+buffer/
+.venv/
+__pycache__/
+*.png
+test_clip.mp4
+config.yaml
