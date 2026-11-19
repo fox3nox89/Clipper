@@ -3,23 +3,47 @@
 # (z. B. auf contentrewards.com) – sonst verletzt du Urheberrechte und wirst nicht bezahlt.
 
 streamers:
-  - name: lacy
-    platform: twitch
-    channel: lacy
-    # Facecam-Bereich als Anteil vom Bild [x, y, breite, hoehe].
-    # Mit "python -m clipper snapshot https://www.twitch.tv/lacy" ablesen.
-    # Weglassen = unscharfer Hintergrund statt Facecam oben.
-    facecam: [0.0, 0.0, 0.25, 0.33]   # Beispielwerte! Selbst ablesen.
+  # ─────────────────────────────────────────────────────────────────────
+  # So funktioniert die Liste:
+  #   enabled: true   = wird überwacht
+  #   enabled: false  = wird ignoriert
+  # Schalte einen Streamer erst auf true, wenn du bei einer laufenden
+  # Clipping-Kampagne für ihn angemeldet bist (z. B. contentrewards.com).
+  #
+  # facecam fehlt überall absichtlich: Die Position ist bei jedem Streamer
+  # anders. Ohne facecam gibt es Hochformat mit unscharfem Hintergrund.
+  # Für "Facecam oben, Spiel unten" einmal ablesen:
+  #   python -m clipper snapshot https://www.twitch.tv/<kanal>
+  # und z. B. "facecam: [0.0, 0.0, 0.3, 0.3]" ergänzen.
+  # ─────────────────────────────────────────────────────────────────────
 
-  - name: clix
-    platform: twitch
-    channel: clix
-    facecam: [0.0, 0.62, 0.22, 0.38]  # Beispielwerte! Selbst ablesen.
+  # ── Aus dem TikTok-Video (dort mit Clipping-Kampagne gezeigt) ──
+  - {name: lacy,        platform: twitch, channel: lacy,          enabled: true}
+  - {name: clix,        platform: twitch, channel: clix,          enabled: true}
+  - {name: dom,         platform: kick,   channel: dom,           enabled: false}  # Kanalname auf kick.com prüfen
+  - {name: tomo,        platform: twitch, channel: tomo,          enabled: false}  # Plattform/Kanal prüfen
 
-  - name: dom
-    platform: kick
-    channel: dom
-    # kick_chatroom_id: 123456   # nur nötig, falls die automatische Suche scheitert
+  # ── Kick-Kampagne zum GTA-6-Stream (laut Ruckus Clipping) ──
+  - {name: dasgasd3m,   platform: kick,   channel: dasgasd3m,     enabled: false}
+
+  # ── Große Streamer, die oft geclippt werden: Kampagne prüfen ──
+  - {name: kaicenat,    platform: twitch, channel: kaicenat,      enabled: false}
+  - {name: jynxzi,      platform: twitch, channel: jynxzi,        enabled: false}
+  - {name: caseoh,      platform: twitch, channel: caseoh_,       enabled: false}
+  - {name: stableronaldo, platform: twitch, channel: stableronaldo, enabled: false}
+  - {name: nickmercs,   platform: twitch, channel: nickmercs,     enabled: false}
+  - {name: tfue,        platform: twitch, channel: tfue,          enabled: false}
+  - {name: sketch,      platform: twitch, channel: sketch,        enabled: false}
+  - {name: xqc,         platform: kick,   channel: xqc,           enabled: false}
+  - {name: adinross,    platform: kick,   channel: adinross,      enabled: false}
+  - {name: trainwreckstv, platform: kick, channel: trainwreckstv, enabled: false}
+  - {name: sweatergxd,  platform: kick,   channel: sweatergxd,    enabled: false}
+
+  # ── Deutschsprachig: Kampagne prüfen ──
+  - {name: papaplatte,  platform: twitch, channel: papaplatte,    enabled: false}
+  - {name: montanablack, platform: twitch, channel: montanablack88, enabled: false}
+  - {name: trymacs,     platform: twitch, channel: trymacs,       enabled: false}
+  - {name: knossi,      platform: twitch, channel: knossi,        enabled: false}
 
 detection:
   window_seconds: 10      # "Hype"-Zeitfenster
@@ -33,7 +57,7 @@ clip:
   facecam_height: 640     # Höhe der Facecam oben (von 1920)
   subtitles: true
   whisper_model: small    # tiny = schnell, medium = genauer
-  language: null          # null = automatisch, sonst z. B. "en" oder "de"
+  language: null          # null = automatisch erkennen (Englisch und Deutsch gemischt ok)
 
 output_dir: clips
 buffer_dir: buffer

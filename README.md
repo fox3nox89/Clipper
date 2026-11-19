@@ -47,7 +47,9 @@ Instagram und YouTube sperren automatisierte Massen-Uploads gerne.
 ## Einrichten
 
 1. `config.example.yaml` kopieren und in `config.yaml` umbenennen.
-2. Deine Streamer eintragen (`platform: twitch` oder `kick`, `channel` = Name aus der URL).
+2. Es sind schon 20 Streamer eingetragen. Setze bei jedem Streamer, für dessen Kampagne du
+   angemeldet bist, `enabled: true`, bei allen anderen `enabled: false`. Weitere Streamer
+   fügst du nach demselben Muster hinzu (`channel` = Name aus der URL).
 3. **Facecam-Position festlegen.** Sie ist bei jedem Streamer anders. Während der
    Streamer live ist:
 

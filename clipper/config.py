@@ -16,6 +16,8 @@ class Streamer:
     facecam: list[float] | None = None
     # Nur Kick: Chatroom-ID (wird sonst automatisch gesucht)
     kick_chatroom_id: int | None = None
+    # false = wird nicht ueberwacht (z. B. solange keine Kampagne laeuft)
+    enabled: bool = True
 
     @property
     def url(self) -> str:
@@ -64,8 +66,9 @@ class Config:
 def load(path: str | Path) -> Config:
     raw = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
     streamers = [Streamer(**s) for s in raw.get("streamers", [])]
+    streamers = [s for s in streamers if s.enabled]
     if not streamers:
-        raise SystemExit("config.yaml: keine Streamer eingetragen.")
+        raise SystemExit("config.yaml: kein Streamer mit 'enabled: true' eingetragen.")
     for s in streamers:
         if s.platform not in ("twitch", "kick"):
             raise SystemExit(f"{s.name}: platform muss 'twitch' oder 'kick' sein.")
